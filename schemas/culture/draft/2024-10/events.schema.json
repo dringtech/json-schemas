@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.dring.tech/culture/draft/2024-10/events.schema.json",
+  "title": "Events",
+  "description": "A list of scheduled events",
+  "type": "object",
+  "properties": {
+    "generationTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "events": {
+      "$ref": "#/$defs/events"
+    }
+  },
+  "required": [
+    "generationTimestamp",
+    "events"
+  ],
+  "$defs": {
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "title",
+        "description",
+        "specificDates"
+      ],
+      "properties": {
+        "id": {
+          "description": "Optional source identifier",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the event",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the event",
+          "type": "string"
+        },
+        "image": {
+          "description": "Link to a promotional image of the event.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "video": {
+          "description": "Link to a promotional video of the event.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "specificDates": {
+          "description": "Array of the starting date-times of the events.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "duration": {
+          "description": "Duration of the event, formatted as an ISO8601 / RFC3339 duration. See https://datatracker.ietf.org/doc/html/rfc3339#appendix-A for details",
+          "type": "string",
+          "format": "duration"
+        },
+        "bookingURL": {
+          "description": "Link to booking page for event.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "details": {
+          "description": "Additional details about the event as a arbitrarily structured JSON object.",
+          "type": "object"
+        },
+        "debug": {
+          "description": "Optional object used for debug purposes",
+          "type": "object"
+        }
+      }
+    }
+  }
+}
